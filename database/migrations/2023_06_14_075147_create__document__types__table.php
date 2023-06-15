@@ -13,12 +13,14 @@ class CreateDocumentTypesTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();
+            $table->string('status')->default('active');
         });
     }
 
     public function down()
     {
         Schema::dropIfExists('document_types');
+
     }
 }
 

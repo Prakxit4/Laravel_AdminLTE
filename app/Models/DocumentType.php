@@ -11,6 +11,7 @@ class DocumentType extends Model
 
     protected $fillable = [
         'name',
+        'status',
     ];
 
     public function participants()

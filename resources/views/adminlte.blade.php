@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{asset("/assetsdist/img/user8-128x128.jpg")}} alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -195,24 +195,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link active ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Starter Pages
+                Starter Page
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url("/first")}}" class="nav-link active">
+              <li class="nav-item{{ Request::is('first*') ? ' menu-open' : '' }}">
+                <a href="{{ url('/first') }}" class="nav-link{{ Request::is('first') ? ' active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Page</p>
+                  <p>Participants</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item{{ Request::is('document*') ? ' menu-open' : '' }}">
+                <a href="{{ url('/document') }}" class="nav-link{{ Request::is('document') ? ' active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p>Document Type</p>
                 </a>
               </li>
             </ul>

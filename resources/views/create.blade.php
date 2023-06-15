@@ -52,15 +52,12 @@
                                     <label for="document_type_id">Document Type</label>
                                     <select name="document_type_id" id="document_type_id" class="form-control">
                                         <option value="">Select Document Type</option>
-                                        <option value="1" {{ old('document_type_id') == '1' ? 'selected' : '' }}>GML</option>
-                                        <option value="2" {{ old('document_type_id') == '2' ? 'selected' : '' }}>SGML</option>
-                                        <option value="3" {{ old('document_type_id') == '3' ? 'selected' : '' }}>XML</option>
-                                        <option value="4" {{ old('document_type_id') == '4' ? 'selected' : '' }}>HTML</option>
+                                        <option value="1" {{ old('document_type_id') == '1' ? 'selected' : '' }}>Citizenship</option>
+                                        <option value="2" {{ old('document_type_id') == '2' ? 'selected' : '' }}>Passport</option>
+                                        <option value="3" {{ old('document_type_id') == '3' ? 'selected' : '' }}>Driver’s License</option>
+                                        <option value="4" {{ old('document_type_id') == '4' ? 'selected' : '' }}>Voter ID </option>
                                     </select>
                                 </div>
-
-
-
                                 <div class="form-group">
                                     <label for="document_file">Document File</label>
                                     <input type="file" name="document_file" id="document_file" class="form-control-file">

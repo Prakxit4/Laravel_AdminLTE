@@ -25,9 +25,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Participants List</h3>
+                            <h3 class="card-title">Document Types List</h3>
                             <div class="card-tools">
-                                <a href="{{ route('participants.create') }}" class="btn btn-primary">Add Participant</a>
+                                <a href="{{ route('document.create') }}" class="btn btn-primary">Add Document Type</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -38,44 +38,22 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th>Date of Birth</th>
-                                        <th>Tenth Offering</th>
-                                        <th>Image</th>
-                                        <th>Document Type</th>
-                                        <th>Document File</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($participants as $participant)
+                                    @foreach ($documentTypes as $documentType)
                                         <tr>
-                                            <td>{{ $participant->id }}</td>
-                                            <td>{{ $participant->name }}</td>
-                                            <td>{{ $participant->dob }}</td>
-                                            <td>{{ $participant->tenth_offering }}</td>
+                                            <td>{{ $documentType->name }}</td>
+                                            <td>{{ $documentType->status }}</td>
                                             <td>
-                                                @if ($participant->image)
-                                                    <img src="{{ Storage::url($participant->image) }}" alt="Participant Image" class="img-thumbnail" width="100">
-                                                @else
-                                                    No Image
-                                                @endif
-                                            </td>
-                                            <td>{{ $participant->documentType->name }}</td>
-                                            <td>
-                                                @if ($participant->document_file)
-                                                    <a href="{{ Storage::url($participant->document_file) }}" target="_blank">View</a>
-                                                @else
-                                                    No Document
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('participants.edit', $participant->id) }}" class="btn btn-primary">Edit</a>
-                                                <form action="{{ route('participants.destroy', $participant->id) }}" method="POST" class="d-inline">
+                                                <a href="{{ route('document.edit', $documentType) }}" class="btn btn-primary">Edit</a>
+                                                <form action="{{ route('document.destroy', $documentType) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this participant?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this document type?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
