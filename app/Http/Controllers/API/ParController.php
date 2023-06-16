@@ -75,15 +75,15 @@ class ParController extends Controller
             'document_type_id' => 'required|exists:document_types,id',
             'document_file' => 'nullable|mimes:pdf,doc,docx',
         ]);
-
+    
         $participant = Participant::findOrFail($id);
-
+    
         // Handle image upload if provided
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->store('images', 'public');
             $validatedData['image'] = $imagePath;
-
+    
             // Delete the previous image if it exists
             if ($participant->image) {
                 $previousImagePath = public_path('storage/' . $participant->image);
@@ -91,14 +91,15 @@ class ParController extends Controller
                     unlink($previousImagePath);
                 }
             }
+            $participant->image = $imagePath;
         }
-
+    
         // Handle document file upload if provided
         if ($request->hasFile('document_file')) {
             $documentFile = $request->file('document_file');
             $documentFilePath = $documentFile->store('documents', 'public');
             $validatedData['document_file'] = $documentFilePath;
-
+    
             // Delete the previous document file if it exists
             if ($participant->document_file) {
                 $previousDocumentFilePath = public_path('storage/' . $participant->document_file);
@@ -106,14 +107,21 @@ class ParController extends Controller
                     unlink($previousDocumentFilePath);
                 }
             }
+    
+            $participant->document_file = $documentFilePath;
         }
-
-        $participant->update($validatedData);
+    
+        $participant->name = $validatedData['name'];
+        $participant->dob = $validatedData['dob'];
+        $participant->tenth_offering = $validatedData['tenth_offering'];
+        $participant->document_type_id = $validatedData['document_type_id'];
+        $participant->save();
+    
         return response()->json([
             'data' => $participant,
             'message' => 'Participant updated successfully',
         ]);
-    }
+ }    
 
     public function destroy($id)
     {
@@ -136,7 +144,7 @@ class ParController extends Controller
         }
     
         $participant->delete();
-        
+
         return response()->json([
             'message' => 'Participant deleted successfully',
         ], 204);
