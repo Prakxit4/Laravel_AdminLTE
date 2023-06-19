@@ -133,8 +133,7 @@ class ParController extends Controller
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
-        }
-    
+        } 
         // Delete the file if it exists
         if ($participant->document_file) {
             $filePath = public_path('storage/' . $participant->document_file);
