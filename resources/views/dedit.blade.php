@@ -36,7 +36,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $documentType->name) }}">
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $documentType->name) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status</label>

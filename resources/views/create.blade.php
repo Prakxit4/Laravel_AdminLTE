@@ -40,7 +40,7 @@
 
                                 <div class="form-group">
                                     <label for="tenth_offering">Tenth Offering</label>
-                                    <input type="text" name="tenth_offering" id="tenth_offering" class="form-control" value="{{ old('tenth_offering') }}">
+                                    <input type="text" name="tenth_offering" id="tenth_offering" class="form-control" value="{{ old('tenth_offering') }}" required>
                                 </div>
 
                                 <div class="form-group">
