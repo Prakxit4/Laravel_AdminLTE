@@ -26,18 +26,23 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-body">
+                            @if ($errorMessage)
+                                <div class="alert alert-danger">
+                                    {{ $errorMessage }}
+                                </div>
+                            @endif
                             <form action="{{ route('document.update', $documentType) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" value="{{ $documentType->name }}" required>
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $documentType->name) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status</label>
                                     <select id="status" name="status" class="form-control" required>
-                                        <option value="Active" {{ $documentType->status == 'Active' ? 'selected' : '' }}>Active</option>
-                                        <option value="Inactive" {{ $documentType->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                        <option value="Active" {{ old('status', $documentType->status) == 'Active' ? 'selected' : '' }}>Active</option>
+                                        <option value="Inactive" {{ old('status', $documentType->status) == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>

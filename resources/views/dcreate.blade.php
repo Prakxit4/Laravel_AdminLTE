@@ -30,15 +30,24 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" required>
+                                    <input type="text" id="name" name="name" class="form-control" >
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status</label>
-                                    <select id="status" name="status" class="form-control" required>
+                                    <select id="status" name="status" class="form-control" >
                                         <option value="Active">Active</option>
                                         <option value="Inactive">Inactive</option>
                                     </select>
+                                    @error('status')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+                                @if(session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
                                 <button type="submit" class="btn btn-primary">Create</button>
                                 <a href="{{ route('document.index') }}" class="btn btn-secondary">Cancel</a>
                             </form>
