@@ -23,23 +23,23 @@ class ParController extends Controller
             'name' => 'required',
             'dob' => 'required|date',
             'tenth_offering' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'document_type_id' => 'required|exists:document_types,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'document_file' => 'required|file',
         ]);
-
+    
         // Handle image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->store('uploads', 'public');
         }
-
+    
         // Handle file upload
         if ($request->hasFile('document_file')) {
             $file = $request->file('document_file');
             $filePath = $file->store('uploads', 'public');
         }
-
+    
         // Create a new participant
         $participant = new Participant();
         $participant->name = $validatedData['name'];
@@ -49,13 +49,14 @@ class ParController extends Controller
         $participant->document_type_id = $validatedData['document_type_id'];
         $participant->document_file = $filePath ?? null; // Save the file path if it exists
         $participant->save();
-
+    
         return response()->json([
             'data' => $participant,
             'message' => 'Participant created successfully',
         ], 201);
     }
-
+    
+    
     public function show($id)
     {
         $participant = Participant::findOrFail($id);
@@ -124,6 +125,7 @@ class ParController extends Controller
  }    
 
     public function destroy($id)
+    
     {
         $participant = Participant::findOrFail($id);
     

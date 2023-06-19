@@ -33,6 +33,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+        <!-- Profile Link -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('profile.edit') }}">
+                <i class="fas fa-user"></i> Profile
+            </a>
+        </li>
+
+        <!-- Logout Link -->
+        <li class="nav-item">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </li>
+    </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -227,6 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
         </ul>
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
